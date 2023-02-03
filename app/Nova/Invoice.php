@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use App\Nova\Cards\MyHtmlCard;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class Invoice extends Resource
 {
@@ -47,18 +48,18 @@ class Invoice extends Resource
         return [
             ID::make()->sortable(),
             
-            Text::make('suppliers'),
-            Text::make('company'),
-            Date::make('date'),
-            Text::make('invoice_n'),
-            Date::make('due_date'),
-            Textarea::make('description'),
-            Currency::make('amount'),
-            Text::make('processed_bank'),
-            Date::make('payment_date'),
-            Text::make('wfa'),
-            Text::make('approved'),
-            Text::make('po'),
+            Text::make('suppliers')->rules('required'),
+            Text::make('company')->rules('required'),
+            Date::make('date')->rules('required'),
+            Text::make('invoice_n')->rules('required'),
+            Date::make('due_date')->rules('required'),
+            Textarea::make('description')->rules('required'),
+            Currency::make('amount')->rules('required'),
+            Text::make('processed_bank')->rules('nullable'),
+            Date::make('payment_date')->rules('required'),
+            Text::make('wfa')->rules('required'),
+            Text::make('approved')->rules('required'),
+            Text::make('po')->rules('required'),
         ];
     }
 
@@ -103,6 +104,8 @@ class Invoice extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            ((new DownloadExcel)->withHeadings())->askForFilename('users-' . time() . '.xlsx'),
+        ];
     }
 }

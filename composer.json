@@ -13,8 +13,7 @@
         "laravel/nova": "~4.0",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2",
-        "maatwebsite/laravel-nova-excel": "^1.3"
+        "laravel/ui": "^4.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
