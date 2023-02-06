@@ -13,7 +13,7 @@ class Invoice extends Model
         'date' => 'date',
         'due_date'=>'date',
         'payment_date'=>'date',
-
+        'payment_status' => 'array'
     ];
 
 }

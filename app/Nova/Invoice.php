@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Nova;
-
+use Laravel\Nova\Fields\Status;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Boolean;
 use App\Nova\Cards\MyHtmlCard;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+use Laravel\Nova\Fields\Select;
+use Fourstacks\NovaCheckboxes\Checkboxes;
+
 
 class Invoice extends Resource
 {
@@ -49,7 +53,9 @@ class Invoice extends Resource
             ID::make()->sortable(),
             
             Text::make('suppliers')->rules('required'),
-            Text::make('company')->rules('required'),
+            Select::make('company')
+            ->options(\App\Models\Company::get()->pluck('com-name','id')),
+            //Text::make('company')->rules('required'),
             Date::make('date')->rules('required'),
             Text::make('invoice_n')->rules('required'),
             Date::make('due_date')->rules('required'),
@@ -60,6 +66,12 @@ class Invoice extends Resource
             Text::make('wfa')->rules('required'),
             Text::make('approved')->rules('required'),
             Text::make('po')->rules('required'),
+            Status::make('Status')
+                ->loadingWhen(['waiting', 'Pending'])
+                ->failedWhen(['failed']),
+            Boolean::make('payment_status')
+                ->trueValue('1')
+                ->falseValue('0'),
         ];
     }
 
@@ -71,7 +83,7 @@ class Invoice extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [new MyHtmlCard];
+        return [];
     }
 
     /**

@@ -2,10 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class invoicePolicy
 {
     use HandlesAuthorization;
 
@@ -22,7 +23,10 @@ class UserPolicy
             return true;
         }
         else if($user->role==2){
-            return false;
+            return true;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -30,17 +34,20 @@ class UserPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user  $model
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, user $model)
+    public function view(User $user, Invoice $invoice)
     {
         //
         if($user->role==1){
             return true;
         }
         else if($user->role==2){
-            return false;
+            return true;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -52,11 +59,15 @@ class UserPolicy
      */
     public function create(User $user)
     {
+        //
         if($user->role==1){
             return true;
         }
         else if($user->role==2){
             return false;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -64,17 +75,20 @@ class UserPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user  $model
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, user $model)
+    public function update(User $user, Invoice $invoice)
     {
         //
         if($user->role==1){
             return true;
         }
         else if($user->role==2){
-            return false;
+            return true;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -82,10 +96,10 @@ class UserPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user  $model
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, user $model)
+    public function delete(User $user, Invoice $invoice)
     {
         //
         if($user->role==1){
@@ -93,6 +107,9 @@ class UserPolicy
         }
         else if($user->role==2){
             return false;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -100,17 +117,20 @@ class UserPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user  $model
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, user $model)
+    public function restore(User $user, Invoice $invoice)
     {
         //
         if($user->role==1){
             return true;
         }
         else if($user->role==2){
-            return false;
+            return true;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 
@@ -118,10 +138,10 @@ class UserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user  $model
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, user $model)
+    public function forceDelete(User $user, Invoice $invoice)
     {
         //
         if($user->role==1){
@@ -129,6 +149,9 @@ class UserPolicy
         }
         else if($user->role==2){
             return false;
+        }
+        else if($user->role==3){
+            return true;
         }
     }
 }
