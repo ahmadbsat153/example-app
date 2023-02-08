@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\MorphToMany;
 
 class User extends Resource
 {
@@ -61,9 +62,10 @@ class User extends Resource
 
             Password::make('Password')
                 ->onlyOnForms()
-                ->creationRules('required', Rules\Password::defaults())
-                ->updateRules('nullable', Rules\Password::defaults()),           
-            BelongsTo::make('Role'),
+                ->creationRules('required', Rules\Password::defaults()),
+
+            MorphToMany::make('Roles', 'roles', \Sereny\NovaPermissions\Nova\Role::class),
+            MorphToMany::make('Permissions', 'permissions', \Sereny\NovaPermissions\Nova\Permission::class),
 
         ];
     }

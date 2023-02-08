@@ -81,13 +81,13 @@ class invoicePolicy
     public function update(User $user, Invoice $invoice)
     {
         
-        if($invoice->status=='Waiting' && $user->role_id==1){
-            return true;
-        }
-        else if($user->role_id==2){
+        if($user->role_id==1){
             return false;
         }
-        else if($invoice->status=='Waiting' && $user->role_id==3){
+        else if($user->role_id==2){
+            return true;
+        }
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -100,19 +100,19 @@ class invoicePolicy
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Invoice $invoice)
-    {
-        //
-        if($user->role_id==1){
-            return true;
-        }
-        else if($user->role_id==2){
-            return true;
-        }
-        else if($user->role_id==3){
-            return true;
-        }
-    }
+    // public function delete(User $user, Invoice $invoice)
+    // {
+    //     //
+    //     if($user->role_id==1){
+    //         return true;
+    //     }
+    //     else if($user->role_id==2){
+    //         return true;
+    //     }
+    //     else if($user->role_id==3){
+    //         return true;
+    //     }
+    // }
 
     /**
      * Determine whether the user can restore the model.

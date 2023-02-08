@@ -14,7 +14,6 @@ use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
-use App\Models\User;
 class Approval extends Resource
 {
     /**
@@ -48,11 +47,8 @@ class Approval extends Resource
      */
     public function fields(NovaRequest $request)
     {
-            return [      
-                ID::make()->sortable(),                        
+            return [               
                 BelongsTo::make('Invoice'),
-                Text::make('Invoice Status'),
-                Text::make('Approved By')->hideWhenCreating()
               ];
     }
 
