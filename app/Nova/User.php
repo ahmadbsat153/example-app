@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\BelongsTo;
 
 class User extends Resource
 {
@@ -62,8 +63,8 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),           
-            Select::make('Role')
-                ->options(\App\Models\Role::get()->pluck('name','id')),
+            BelongsTo::make('Role'),
+
         ];
     }
 
@@ -109,5 +110,12 @@ class User extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+    public static function usesScout()
+    {
+        return false;
+    }
+    public function title() {
+        return $this->name;
     }
 }

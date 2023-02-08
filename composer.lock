@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "352abfc38aa0340d3c42a9ec0ce26437",
+    "content-hash": "cd421d33521de4bd1a075cf4d20985b9",
     "packages": [
         {
             "name": "abordage/nova-html-card",
@@ -229,6 +229,61 @@
                 }
             ],
             "time": "2023-01-15T23:31:13+00:00"
+        },
+        {
+            "name": "chinleung/nova-autofill",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chinleung/nova-autofill.git",
+                "reference": "6c7c8cc55527ec8b4c39add6bfcb0f49e6213ea1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chinleung/nova-autofill/zipball/6c7c8cc55527ec8b4c39add6bfcb0f49e6213ea1",
+                "reference": "6c7c8cc55527ec8b4c39add6bfcb0f49e6213ea1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.6|^6.0|^7.0|^8.0|^9.0",
+                "laravel/nova": "*",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ChinLeung\\NovaAutofill\\NovaAutofillServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ChinLeung\\NovaAutofill\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chin Leung",
+                    "email": "hello@chinleung.com"
+                }
+            ],
+            "description": "Autofill values for Laravel Nova fields based on the parent model on creation.",
+            "homepage": "https://github.com/chinleung/nova-autofill",
+            "keywords": [
+                "autofill",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/chinleung/nova-autofill/issues",
+                "source": "https://github.com/chinleung/nova-autofill/tree/v1.1.2"
+            },
+            "time": "2022-03-21T13:34:08+00:00"
         },
         {
             "name": "composer/semver",
@@ -2941,6 +2996,52 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.1"
             },
             "time": "2022-12-02T22:17:43+00:00"
+        },
+        {
+            "name": "miljoen/nova-autofill",
+            "version": "v1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Miljoen/nova-autofill.git",
+                "reference": "2e29c952f7f3556ac7fdc990887791a60a7e5a3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Miljoen/nova-autofill/zipball/2e29c952f7f3556ac7fdc990887791a60a7e5a3a",
+                "reference": "2e29c952f7f3556ac7fdc990887791a60a7e5a3a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Miljoen\\NovaAutofill\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Miljoen\\NovaAutofill\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/Miljoen/nova-autofill/issues",
+                "source": "https://github.com/Miljoen/nova-autofill/tree/v1.4"
+            },
+            "abandoned": true,
+            "time": "2020-05-23T11:11:10+00:00"
         },
         {
             "name": "monolog/monolog",

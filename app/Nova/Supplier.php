@@ -7,21 +7,21 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Role extends Resource
+class Supplier extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Role>
+     * @var class-string<\App\Models\Supplier>
      */
-    public static $model = \App\Models\Role::class;
-    protected $table ='roles';
+    public static $model = \App\Models\Supplier::class;
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'supp_name';
 
     /**
      * The columns that should be searched.
@@ -32,9 +32,6 @@ class Role extends Resource
         'id',
     ];
 
-    public function title() {
-        return $this->name;
-    }
     /**
      * Get the fields displayed by the resource.
      *
@@ -45,7 +42,7 @@ class Role extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('name'),
+            Text::make('supp_name')
         ];
     }
 
@@ -92,8 +89,4 @@ class Role extends Resource
     {
         return [];
     }
-    public static function usesScout()
-{
-    return false;
-}
 }

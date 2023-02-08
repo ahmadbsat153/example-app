@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RolePolicy
+class CompanyPolicy
 {
     use HandlesAuthorization;
 
@@ -25,23 +25,29 @@ class RolePolicy
         else if($user->role_id==2){
             return false;
         }
+        else if($user->role_id==3){
+            return false;
+        }
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Role $role)
+    public function view(User $user, Company $company)
     {
         //
         if($user->role_id==1){
             return true;
         }
         else if($user->role_id==2){
-            return false;
+            return true;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 
@@ -58,7 +64,10 @@ class RolePolicy
             return true;
         }
         else if($user->role_id==2){
-            return false;
+            return true;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 
@@ -66,17 +75,20 @@ class RolePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Role $role)
+    public function update(User $user, Company $company)
     {
         //
         if($user->role_id==1){
             return true;
         }
         else if($user->role_id==2){
-            return false;
+            return true;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 
@@ -84,10 +96,10 @@ class RolePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Role $role)
+    public function delete(User $user, Company $company)
     {
         //
         if($user->role_id==1){
@@ -95,6 +107,9 @@ class RolePolicy
         }
         else if($user->role_id==2){
             return false;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 
@@ -102,10 +117,10 @@ class RolePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Role $role)
+    public function restore(User $user, Company $company)
     {
         //
         if($user->role_id==1){
@@ -113,6 +128,9 @@ class RolePolicy
         }
         else if($user->role_id==2){
             return false;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 
@@ -120,10 +138,10 @@ class RolePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Role $role)
+    public function forceDelete(User $user, Company $company)
     {
         //
         if($user->role_id==1){
@@ -131,6 +149,9 @@ class RolePolicy
         }
         else if($user->role_id==2){
             return false;
+        }
+        else if($user->role_id==3){
+            return true;
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Nova;
 use Laravel\Nova\Fields\Status;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -30,7 +31,10 @@ class Invoice extends Resource
      *
      * @var string
      */
-    public static $title = 'company';
+    public function title()
+    {
+        return $this->invoice_n;
+    }
 
     /**
      * The columns that should be searched.
@@ -51,10 +55,8 @@ class Invoice extends Resource
     {
         return [
             ID::make()->sortable(),
-            
-            Text::make('suppliers')->rules('required'),
-            Select::make('company')
-            ->options(\App\Models\Company::get()->pluck('com-name','id')),
+            BelongsTo::make('Supplier'),
+            BelongsTo::make('Company'),
             //Text::make('company')->rules('required'),
             Date::make('date')->rules('required'),
             Text::make('invoice_n')->rules('required'),
@@ -66,12 +68,18 @@ class Invoice extends Resource
             Text::make('wfa')->rules('required'),
             Text::make('approved')->rules('required'),
             Text::make('po')->rules('required'),
+            Select::make('Status')->options([
+                'Waiting' => 'Waiting',
+                'Approved' => 'Approved',
+                'Rejected' => 'Rejected',
+            ])->hideFromIndex()->default('waiting'),
             Status::make('Status')
-                ->loadingWhen(['waiting', 'Pending'])
-                ->failedWhen(['failed']),
+                ->loadingWhen(['waiting', 'Waiting'])
+                ->failedWhen(['Rejected'])->sortable(),
             Boolean::make('payment_status')
-                ->trueValue('1')
-                ->falseValue('0'),
+                ->trueValue(1)
+                ->falseValue(0),
+           
         ];
     }
 

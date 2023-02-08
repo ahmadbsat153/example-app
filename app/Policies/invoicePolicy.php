@@ -19,13 +19,13 @@ class invoicePolicy
     public function viewAny(User $user)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -40,13 +40,13 @@ class invoicePolicy
     public function view(User $user, Invoice $invoice)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -60,13 +60,13 @@ class invoicePolicy
     public function create(User $user)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
-            return false;
+        else if($user->role_id==2){
+            return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -80,17 +80,18 @@ class invoicePolicy
      */
     public function update(User $user, Invoice $invoice)
     {
-        //
-        if($user->role==1){
+        
+        if($invoice->status=='Waiting' && $user->role_id==1){
             return true;
         }
-        else if($user->role==2){
-            return true;
+        else if($user->role_id==2){
+            return false;
         }
-        else if($user->role==3){
+        else if($invoice->status=='Waiting' && $user->role_id==3){
             return true;
         }
     }
+
 
     /**
      * Determine whether the user can delete the model.
@@ -102,13 +103,13 @@ class invoicePolicy
     public function delete(User $user, Invoice $invoice)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
-            return false;
+        else if($user->role_id==2){
+            return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -123,13 +124,13 @@ class invoicePolicy
     public function restore(User $user, Invoice $invoice)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }
@@ -144,13 +145,13 @@ class invoicePolicy
     public function forceDelete(User $user, Invoice $invoice)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
-            return false;
+        else if($user->role_id==2){
+            return true;
         }
-        else if($user->role==3){
+        else if($user->role_id==3){
             return true;
         }
     }

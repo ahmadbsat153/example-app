@@ -16,4 +16,10 @@ class Invoice extends Model
         'payment_status' => 'array'
     ];
 
+    public function supplier(){
+        return $this->belongsTo(Supplier::class);
+    }
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }

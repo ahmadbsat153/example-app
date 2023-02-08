@@ -18,10 +18,10 @@ class UserPolicy
     public function viewAny(User $user)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -36,10 +36,10 @@ class UserPolicy
     public function view(User $user, user $model)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -52,10 +52,10 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -70,10 +70,10 @@ class UserPolicy
     public function update(User $user, user $model)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -88,10 +88,10 @@ class UserPolicy
     public function delete(User $user, user $model)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -106,10 +106,10 @@ class UserPolicy
     public function restore(User $user, user $model)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
@@ -124,10 +124,10 @@ class UserPolicy
     public function forceDelete(User $user, user $model)
     {
         //
-        if($user->role==1){
+        if($user->role_id==1){
             return true;
         }
-        else if($user->role==2){
+        else if($user->role_id==2){
             return false;
         }
     }
