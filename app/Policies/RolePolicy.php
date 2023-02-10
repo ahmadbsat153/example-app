@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Supplier;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SupplierPolicy
+class RolePolicy
 {
     use HandlesAuthorization;
 
@@ -23,10 +23,10 @@ class SupplierPolicy
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
-            return true;
+            return false;
         }
     }
 
@@ -34,20 +34,20 @@ class SupplierPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Supplier $supplier)
+    public function view(User $user, Role $role)
     {
         //
         if($user->role_id==1){
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
-            return true;
+            return false;
         }
     }
 
@@ -64,10 +64,10 @@ class SupplierPolicy
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
-            return true;
+            return false;
         }
     }
 
@@ -75,17 +75,17 @@ class SupplierPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Supplier $supplier)
+    public function update(User $user, Role $role)
     {
         //
         if($user->role_id==1){
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
             return false;
@@ -96,10 +96,10 @@ class SupplierPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Supplier $supplier)
+    public function delete(User $user, Role $role)
     {
         //
         if($user->role_id==1){
@@ -117,10 +117,10 @@ class SupplierPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Supplier $supplier)
+    public function restore(User $user, Role $role)
     {
         //
         if($user->role_id==1){
@@ -138,10 +138,10 @@ class SupplierPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Supplier $supplier)
+    public function forceDelete(User $user, Role $role)
     {
         //
         if($user->role_id==1){

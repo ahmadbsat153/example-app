@@ -17,6 +17,8 @@ class Main extends Dashboard
      */
     public function cards()
     {
-        return [new NewInvoices,new NewUsers,new MyHtmlCard];
+        return [new NewInvoices,new NewUsers
+        // new MyHtmlCard
+    ];
     }
 }

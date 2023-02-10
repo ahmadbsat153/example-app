@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use App\Models\User;
 class Approval extends Resource
 {
     /**
@@ -21,7 +22,7 @@ class Approval extends Resource
      *
      * @var class-string<\App\Models\Approval>
      */
-    public static $model = \App\Models\Approval::class;
+    public static $model = \App\Models\Invoice::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -47,8 +48,52 @@ class Approval extends Resource
      */
     public function fields(NovaRequest $request)
     {
-            return [               
-                BelongsTo::make('Invoice'),
+            return [
+                //  ID::make()->sortable(),
+                  //Select::make('invoice_id')
+                    //  ->options(\App\Models\Invoice::get()->pluck('invoice_n','id')),
+               //   Text::make('company_name')
+                  //    ->autofill('company'),
+                  //Text::make('supplier_name'),
+                  BelongsTo::make('Supplier')                      
+                  ->withMeta(['extraAttributes' => [
+                    'readonly' => true
+                     ]]),
+                  BelongsTo::make('Company')
+                  ->withMeta(['extraAttributes' => [
+                    'readonly' => true
+                     ]]),           //Text::make('company')->rules('required'),
+                  Text::make('invoice_n')
+                      ->withMeta(['extraAttributes' => [
+                      'readonly' => true
+                       ]]),
+                  Currency::make('amount')
+                      ->withMeta(['extraAttributes' => [
+                      'readonly' => true
+                       ]]),
+                  Text::make('wfa')               
+                  ->withMeta(['extraAttributes' => [
+                      'readonly' => true
+                       ]]),
+                  Text::make('approved')
+                  ->withMeta(['extraAttributes' => [
+                      'readonly' => true
+                       ]]),
+                  Text::make('po')
+                  ->withMeta(['extraAttributes' => [
+                      'readonly' => true
+                       ]]),
+                Select::make('Status')->options([
+                        'Waiting' => 'Waiting',
+                        'Approved' => 'Approved',
+                        'Rejected' => 'Rejected',
+                    ])->hideFromIndex()
+                    ->default('waiting')
+                    ->showOnUpdating(function (NovaRequest $request) 
+                        {return $request->user()->id==2||$request->user()->id==1;}),
+                  Status::make('Status')
+                       ->loadingWhen(['waiting', 'Waiting'])
+                       ->failedWhen(['Rejected']),
               ];
     }
 
@@ -71,7 +116,7 @@ class Approval extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [ ];
+        return [ new InvoiceToBeApproved];
     }
 
     /**

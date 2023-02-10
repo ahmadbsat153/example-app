@@ -14,6 +14,8 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsTo;
+
 use App\Nova\Cards\MyHtmlCard;
 
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
@@ -60,40 +62,43 @@ class Bill extends Resource
                //   Text::make('company_name')
                   //    ->autofill('company'),
                   //Text::make('supplier_name'),
-                  Text::make('suppliers')->rules('required')
+                  BelongsTo::make('Supplier')                      
+                  ->withMeta(['extraAttributes' => [
+                    'readonly' => true
+                     ]]),
+                  BelongsTo::make('Company')
+                  ->withMeta(['extraAttributes' => [
+                    'readonly' => true
+                     ]]),
+                
+          //Text::make('company')->rules('required'),
+                  Text::make('invoice_n')
                       ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
-                  Text::make('company')                 
-                      ->withMeta(['extraAttributes' => [
-                      'readonly' => true
-                       ]]),           //Text::make('company')->rules('required'),
-                  Text::make('invoice_n')->rules('required')
+                  Currency::make('amount')
                       ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
-                  Currency::make('amount')->rules('required')
-                      ->withMeta(['extraAttributes' => [
-                      'readonly' => true
-                       ]]),
-                  Text::make('wfa')->rules('required')                
+                  Text::make('wfa')               
                   ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
-                  Text::make('approved')->rules('required')
+                  Text::make('approved')
                   ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
-                  Text::make('po')->rules('required')
+                  Text::make('po')
                   ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
                   Status::make('Status')
                        ->loadingWhen(['waiting', 'Waiting'])
                        ->failedWhen(['Rejected']),
-                  Boolean::make('payment_status')
-                      ->trueValue('1')
-                      ->falseValue('0')
+                  Boolean::make('Paid')
+                       ->trueValue('1')
+                       ->falseValue('0')->showOnUpdating(function (NovaRequest $request) {
+                        return $request->user()->id==3;}),
               ];
     }
 

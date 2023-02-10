@@ -27,6 +27,8 @@ class invoicePolicy
         }
         else if($user->role_id==3){
             return true;
+        }else if($user->role_id==4){
+            return true;
         }
     }
 
@@ -49,6 +51,9 @@ class invoicePolicy
         else if($user->role_id==3){
             return true;
         }
+        else if($user->role_id==4){
+            return true;
+        }
     }
 
     /**
@@ -67,6 +72,9 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==3){
+            return false;
+        }
+        else if($user->role_id==4){
             return true;
         }
     }
@@ -82,12 +90,15 @@ class invoicePolicy
     {
         
         if($user->role_id==1){
-            return false;
+            return true;
         }
         else if($user->role_id==2){
             return true;
         }
         else if($user->role_id==3){
+            return true;
+        }
+        else if($user->role_id==4){
             return true;
         }
     }
@@ -100,19 +111,22 @@ class invoicePolicy
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    // public function delete(User $user, Invoice $invoice)
-    // {
-    //     //
-    //     if($user->role_id==1){
-    //         return true;
-    //     }
-    //     else if($user->role_id==2){
-    //         return true;
-    //     }
-    //     else if($user->role_id==3){
-    //         return true;
-    //     }
-    // }
+    public function delete(User $user, Invoice $invoice)
+    {
+        //
+        if($user->role_id==1){
+            return true;
+        }
+        else if($user->role_id==2){
+            return true;
+        }
+        else if($user->role_id==3){
+            return false;
+        }
+        else if($user->role_id==4){
+            return true;
+        }
+    }
 
     /**
      * Determine whether the user can restore the model.
@@ -131,6 +145,9 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==3){
+            return true;
+        }
+        else if($user->role_id==4){
             return true;
         }
     }
@@ -152,6 +169,9 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==3){
+            return true;
+        }
+        else if($user->role_id==4){
             return true;
         }
     }

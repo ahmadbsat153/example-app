@@ -9,12 +9,14 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Boolean;
 use App\Nova\Cards\MyHtmlCard;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 use Laravel\Nova\Fields\Select;
 use Fourstacks\NovaCheckboxes\Checkboxes;
+use App\Models\User;
 
 
 class Invoice extends Resource
@@ -55,31 +57,63 @@ class Invoice extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Supplier'),
-            BelongsTo::make('Company'),
-            //Text::make('company')->rules('required'),
-            Date::make('date')->rules('required'),
-            Text::make('invoice_n')->rules('required'),
-            Date::make('due_date')->rules('required'),
-            Textarea::make('description')->rules('required'),
-            Currency::make('amount')->rules('required'),
-            Text::make('processed_bank')->rules('nullable'),
-            Date::make('payment_date')->rules('required'),
-            Text::make('wfa')->rules('required'),
-            Text::make('approved')->rules('required'),
-            Text::make('po')->rules('required'),
+
+                BelongsTo::make('Supplier')->readonly(function ($request) {
+                    return $request->user()->role_id==3;
+                }),
+                 BelongsTo::make('Company')->readonly(function ($request) {
+                    return $request->user()->role_id==3;
+                }),
+                 Date::make('date')->readonly(function ($request) {
+                    return $request->user()->role_id==3;
+                }),
+                 Text::make('invoice_n')->readonly(function ($request) {
+                    return $request->user()->role_id==3;
+                }),
+                 Date::make('due_date')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                 Textarea::make('description')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                 Currency::make('amount')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                 Text::make('processed_bank')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                DateTime::make('payment_date')->displayUsing(fn ($value) => $value ? $value->format('D d/m/Y, g:ia') : '')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                Text::make('wfa')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                Text::make('approved')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+                
+                Text::make('po')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
             Select::make('Status')->options([
                 'Waiting' => 'Waiting',
                 'Approved' => 'Approved',
                 'Rejected' => 'Rejected',
-            ])->hideFromIndex()->default('waiting'),
+            ])->hideFromIndex()->default(function (NovaRequest $request) { 
+                if($request->user()->id==2)
+                return 'Approved';
+            else return'Waiting';})
+            ->readonly(function ($request) {
+                return  $request->user()->role_id==2 || $request->user()->role_id==4 ;
+            }),
             Status::make('Status')
                 ->loadingWhen(['waiting', 'Waiting'])
                 ->failedWhen(['Rejected'])->sortable(),
             Boolean::make('payment_status')
                 ->trueValue(1)
-                ->falseValue(0),
-           
+                ->falseValue(0)
+                ->hideWhenUpdating()
+                ->hideWhenCreating(),
         ];
     }
 

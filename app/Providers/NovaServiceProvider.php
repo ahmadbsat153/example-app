@@ -16,6 +16,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        Nova::footer(function ($request){
+            return '© 2023 Gold Tiger Logistics Solutions';
+        });
     }
 
     /**

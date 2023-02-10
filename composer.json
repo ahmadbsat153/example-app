@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^7.3|^8.1.0",
         "abordage/nova-html-card": "^0.2.1",
         "anaseqal/nova-import": "^0.0.6",
         "chinleung/nova-autofill": "^1.1",
