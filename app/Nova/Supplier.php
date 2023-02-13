@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Greg0x46\MaskedField\MaskedField;
+
+
 
 class Supplier extends Resource
 {
@@ -42,7 +45,16 @@ class Supplier extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('supp_name')
+            Text::make('Supplier Name','supp_name'),
+            MaskedField::make('ABN','supplier_abn')
+            ->mask('## ### ### ###')
+            ->required(),
+            // Text::make('Phone Number','supplier_nb'),
+            MaskedField::make('Mobile Number','supplier_nb')
+            ->mask('#### ### ###'),
+            MaskedField::make('Land Line','supplier_land')
+            ->mask('## #### ####'),
+            Text::make('Email','supplier_email'),
         ];
     }
 

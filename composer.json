@@ -9,7 +9,9 @@
         "abordage/nova-html-card": "^0.2.1",
         "anaseqal/nova-import": "^0.0.6",
         "chinleung/nova-autofill": "^1.1",
+        "digital-creative/nova-filepond": "^0.2.13",
         "fourstacks/nova-checkboxes": "^0.1.7",
+        "greg0x46/masked-field": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/nova": "~4.0",
@@ -18,6 +20,8 @@
         "laravel/ui": "^4.2",
         "maatwebsite/laravel-nova-excel": "^1.3",
         "miljoen/nova-autofill": "*",
+        "mziraki/nova-formatted-number-field": "^0.0.2",
+        "rimu/formatted-number": "^0.2.0",
         "sereny/nova-permissions": "^1.2",
         "silvanite/novafieldcheckboxes": "^1.2"
     },

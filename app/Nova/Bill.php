@@ -80,14 +80,6 @@ class Bill extends Resource
                       ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
-                  Text::make('wfa')               
-                  ->withMeta(['extraAttributes' => [
-                      'readonly' => true
-                       ]]),
-                  Text::make('approved')
-                  ->withMeta(['extraAttributes' => [
-                      'readonly' => true
-                       ]]),
                   Text::make('po')
                   ->withMeta(['extraAttributes' => [
                       'readonly' => true

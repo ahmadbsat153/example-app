@@ -11,12 +11,15 @@ use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Boolean;
-use App\Nova\Cards\MyHtmlCard;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 use Laravel\Nova\Fields\Select;
 use Fourstacks\NovaCheckboxes\Checkboxes;
 use App\Models\User;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Image;
+
+
 
 
 class Invoice extends Resource
@@ -44,7 +47,7 @@ class Invoice extends Resource
      * @var array
      */
     public static $search = [
-        'id','suppliers','company','date','invoice_n','due_date','description','amount','processed_bank','payment_date','wfa','approved','po',
+        'id','invoice_n','description','amount','invoice_n','processed_bank','payment_date','po','status','payment_status','supplier_id','company_id',
     ];
 
     /**
@@ -56,7 +59,7 @@ class Invoice extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make(),
 
                 BelongsTo::make('Supplier')->readonly(function ($request) {
                     return $request->user()->role_id==3;
@@ -69,15 +72,26 @@ class Invoice extends Resource
                 }),
                  Text::make('invoice_n')->readonly(function ($request) {
                     return $request->user()->role_id==3;
-                }),
+                })->sortable(),
                  Date::make('due_date')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
                 }),
+                Text::make('category')->readonly(function ($request) {
+                    return  $request->user()->role_id==3;
+                }),
+
                  Textarea::make('description')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
                 }),
                  Currency::make('amount')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
+                }),
+                Select::make('payment type')->options([
+                    'Cash' => 'cash',
+                    'Credit' => 'credit',
+                ])
+                ->readonly(function ($request) {
+                    return  $request->user()->role_id==2 || $request->user()->role_id==4 ;
                 }),
                  Text::make('processed_bank')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
@@ -85,16 +99,11 @@ class Invoice extends Resource
                 DateTime::make('payment_date')->displayUsing(fn ($value) => $value ? $value->format('D d/m/Y, g:ia') : '')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
                 }),
-                Text::make('wfa')->readonly(function ($request) {
-                    return  $request->user()->role_id==3;
-                }),
-                Text::make('approved')->readonly(function ($request) {
-                    return  $request->user()->role_id==3;
-                }),
                 
                 Text::make('po')->readonly(function ($request) {
                     return  $request->user()->role_id==3;
                 }),
+                Boolean::make('POD Required'),
             Select::make('Status')->options([
                 'Waiting' => 'Waiting',
                 'Approved' => 'Approved',
@@ -114,6 +123,9 @@ class Invoice extends Resource
                 ->falseValue(0)
                 ->hideWhenUpdating()
                 ->hideWhenCreating(),
+            // Image::make('Invoice Images')
+            //     ->disk('local')
+            //     ->maxWidth(500),
         ];
     }
 

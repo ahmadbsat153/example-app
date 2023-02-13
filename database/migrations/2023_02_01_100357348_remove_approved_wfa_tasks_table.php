@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::table('invoices', function (Blueprint $table) {
             //
-            $table->dropColumn('title');
-            $table->dropColumn('name');
-            $table->dropColumn('created_at');
-            $table->dropColumn('updated_at');
+            $table->dropColumn('invoice_image');
         });
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4ad58036f7703fe0acc18960fca296d",
+    "content-hash": "f4a09922387bcd1897f961b38516f8aa",
     "packages": [
         {
             "name": "abordage/nova-html-card",
@@ -440,6 +440,61 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.2"
             },
             "time": "2022-10-27T11:44:00+00:00"
+        },
+        {
+            "name": "digital-creative/nova-filepond",
+            "version": "v0.2.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-filepond.git",
+                "reference": "703271c8fe86a36281a779c8cf55fbbf403138d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-filepond/zipball/703271c8fe86a36281a779c8cf55fbbf403138d5",
+                "reference": "703271c8fe86a36281a779c8cf55fbbf403138d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\Filepond\\FilepondServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\Filepond\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "A Nova field for uploading File, Image and Video using filepond.",
+            "keywords": [
+                "Doka",
+                "field",
+                "file",
+                "laravel",
+                "nova",
+                "upload",
+                "video"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-filepond/issues",
+                "source": "https://github.com/dcasia/nova-filepond/tree/master"
+            },
+            "time": "2019-11-16T13:25:53+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1319,6 +1374,53 @@
                 }
             ],
             "time": "2022-07-30T15:56:11+00:00"
+        },
+        {
+            "name": "greg0x46/masked-field",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/greg0x46/laravel-nova-masked-field.git",
+                "reference": "4768415c8257c86749c3b9d145e1c30c74c3706b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/greg0x46/laravel-nova-masked-field/zipball/4768415c8257c86749c3b9d145e1c30c74c3706b",
+                "reference": "4768415c8257c86749c3b9d145e1c30c74c3706b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Greg0x46\\MaskedField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Greg0x46\\MaskedField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "mask",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/greg0x46/laravel-nova-masked-field/issues",
+                "source": "https://github.com/greg0x46/laravel-nova-masked-field/tree/v1.0.1"
+            },
+            "time": "2022-11-08T01:18:12+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3303,6 +3405,55 @@
             "time": "2022-08-04T09:53:51+00:00"
         },
         {
+            "name": "mziraki/nova-formatted-number-field",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mziraki/nova-formatted-number-field.git",
+                "reference": "774b90791bbeb6f4f11e720c7d3d7f9adddd1f6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mziraki/nova-formatted-number-field/zipball/774b90791bbeb6f4f11e720c7d3d7f9adddd1f6c",
+                "reference": "774b90791bbeb6f4f11e720c7d3d7f9adddd1f6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MZiraki\\Fields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MZiraki\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova formatted number field.",
+            "keywords": [
+                "field",
+                "formatted",
+                "laravel",
+                "nova",
+                "number"
+            ],
+            "support": {
+                "issues": "https://github.com/mziraki/nova-formatted-number-field/issues",
+                "source": "https://github.com/mziraki/nova-formatted-number-field/tree/master"
+            },
+            "abandoned": true,
+            "time": "2019-03-12T17:39:01+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "2.66.0",
             "source": {
@@ -4751,6 +4902,51 @@
                 }
             ],
             "time": "2023-02-09T15:13:18+00:00"
+        },
+        {
+            "name": "rimu/formatted-number",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RingierIMU/laravel-nova-formatted-number.git",
+                "reference": "a4f0fdf5c416ee6a97cc75bfc3a6f401aae6ed00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RingierIMU/laravel-nova-formatted-number/zipball/a4f0fdf5c416ee6a97cc75bfc3a6f401aae6ed00",
+                "reference": "a4f0fdf5c416ee6a97cc75bfc3a6f401aae6ed00",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rimu\\FormattedNumber\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rimu\\FormattedNumber\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/RingierIMU/laravel-nova-formatted-number/issues",
+                "source": "https://github.com/RingierIMU/laravel-nova-formatted-number/tree/master"
+            },
+            "time": "2019-10-25T12:15:42+00:00"
         },
         {
             "name": "sereny/nova-permissions",

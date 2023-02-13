@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('invoices', function (Blueprint $table) {
+        Schema::table('suppliers', function (Blueprint $table) {
             //
-            $table->text('payment_status');
+            $table->text('supplier_land');
+
         });
     }
 
@@ -26,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('invoices', function (Blueprint $table) {
+        Schema::table('suppliers', function (Blueprint $table) {
             //
         });
     }
