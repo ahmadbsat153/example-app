@@ -4,8 +4,11 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Nova\Filters\DepotFilter;
+use App\Models\User;
 
 class Company extends Resource
 {
@@ -22,7 +25,6 @@ class Company extends Resource
      * @var string
      */
     public static $title = 'com-name';
-
     /**
      * The columns that should be searched.
      *
@@ -42,7 +44,12 @@ class Company extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('com-name'),
+            Text::make('Company Name','com-name')->required(),
+            Select::make('Company Depot','invoice_depot')->options([
+                'Sydney ' => 'Sydney',
+                'Queensland ' => 'Queensland',
+                'Victoria ' => 'Victoria',
+            ])->required(),
         ];
     }
 
@@ -65,7 +72,9 @@ class Company extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [
+            new DepotFilter
+        ];
     }
 
     /**

@@ -22,10 +22,7 @@ class RolePolicy
         if($user->role_id==1){
             return true;
         }
-        else if($user->role_id==2){
-            return false;
-        }
-        else if($user->role_id==3){
+        else if ($user->role_id==5){
             return false;
         }
     }
@@ -43,12 +40,7 @@ class RolePolicy
         if($user->role_id==1){
             return true;
         }
-        else if($user->role_id==2){
-            return false;
-        }
-        else if($user->role_id==3){
-            return false;
-        }
+        else return false;
     }
 
     /**

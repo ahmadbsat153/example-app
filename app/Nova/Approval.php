@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 use App\Nova\Filters\InvoiceToBeApproved;
+use App\Nova\Filters\DepotFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -63,7 +64,7 @@ class Approval extends Resource
                   ->withMeta(['extraAttributes' => [
                     'readonly' => true
                      ]]),           //Text::make('company')->rules('required'),
-                  Text::make('invoice_n')
+                  Text::make('Invoice NB','invoice_n')
                       ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
@@ -82,7 +83,8 @@ class Approval extends Resource
                     ])->hideFromIndex()
                     ->default('waiting')
                     ->showOnUpdating(function (NovaRequest $request) 
-                        {return $request->user()->id==2||$request->user()->id==1;}),
+                        {return $request->user()->id==2||$request->user()->id==1
+                            || $request->user()->id==5;}),
                   Status::make('Status')
                        ->loadingWhen(['waiting', 'Waiting'])
                        ->failedWhen(['Rejected']),
@@ -108,7 +110,7 @@ class Approval extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [ new InvoiceToBeApproved];
+        return [ new InvoiceToBeApproved , new DepotFilter];
     }
 
     /**

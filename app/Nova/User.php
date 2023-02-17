@@ -45,7 +45,11 @@ class User extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()
+            ->sortable()
+            ->showOnIndex(false)
+            ->showOnCreating(false)
+            ->showOnUpdating(false),
 
             // Gravatar::make()->maxWidth(50),
 
@@ -58,7 +62,15 @@ class User extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+            Select::make('Depot','depot')
+            ->options([
+                'All' => 'All',
+                'Victoria' => 'Victoria',
+                'Sydney' => 'sydney',
+                'Queensland' => 'Queensland',
+            ]),
             BelongsTo::make('Role'),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults()),

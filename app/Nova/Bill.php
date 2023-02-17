@@ -3,6 +3,7 @@
 namespace App\Nova;
 use App\Nova\Filters\InvoicePaid;
 use App\Nova\Filters\InvoiceApproved;
+use App\Nova\Filters\DepotFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -72,7 +73,7 @@ class Bill extends Resource
                      ]]),
                 
           //Text::make('company')->rules('required'),
-                  Text::make('invoice_n')
+                  Text::make('Invoice NB','invoice_n')
                       ->withMeta(['extraAttributes' => [
                       'readonly' => true
                        ]]),
@@ -89,8 +90,11 @@ class Bill extends Resource
                        ->failedWhen(['Rejected']),
                   Boolean::make('Paid')
                        ->trueValue('1')
-                       ->falseValue('0')->showOnUpdating(function (NovaRequest $request) {
-                        return $request->user()->id==3;}),
+                       ->falseValue('0')
+                       ->showOnUpdating(function (NovaRequest $request) {
+                        if($request->user()->role_id==3){
+                            return true;
+                        }}),
               ];
     }
 
@@ -115,7 +119,8 @@ class Bill extends Resource
     {
         return [
             new InvoiceApproved,
-            new InvoicePaid
+            new InvoicePaid,
+            new DepotFilter,
         ];
     }
 

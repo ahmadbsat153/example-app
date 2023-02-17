@@ -16,15 +16,7 @@ return new class extends Migration
         //
         Schema::table('invoices', function (Blueprint $table) {
             //
-            $table->text('invoice_n');
-            $table->text('due_date');
-            $table->text('description');
-            $table->text('amount');
-            $table->text('processed_bank');
-            $table->text('payment_date');
-            $table->text('wfa');
-            $table->text('approved');
-            $table->text('po');
+            $table->text('company');
         });
     }
 

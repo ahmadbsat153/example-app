@@ -19,14 +19,16 @@ class CompanyPolicy
     public function viewAny(User $user)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
-            return false;
+            return true;
         }
         else if($user->role_id==3){
-            return false;
+            return true;
+        }else if($user->role_id==4){
+            return true;
         }
     }
 
@@ -40,7 +42,7 @@ class CompanyPolicy
     public function view(User $user, Company $company)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5 || $user->role_id==5 ){
             return true;
         }
         else if($user->role_id==2){
@@ -60,7 +62,7 @@ class CompanyPolicy
     public function create(User $user)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -81,7 +83,7 @@ class CompanyPolicy
     public function update(User $user, Company $company)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -123,7 +125,7 @@ class CompanyPolicy
     public function restore(User $user, Company $company)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -144,7 +146,7 @@ class CompanyPolicy
     public function forceDelete(User $user, Company $company)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){

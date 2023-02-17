@@ -29,6 +29,8 @@ class invoicePolicy
             return true;
         }else if($user->role_id==4){
             return true;
+        }else if($user->role_id==5){
+            return true;
         }
     }
 
@@ -54,6 +56,9 @@ class invoicePolicy
         else if($user->role_id==4){
             return true;
         }
+        else if($user->role_id==5){
+            return true;
+        }
     }
 
     /**
@@ -75,6 +80,9 @@ class invoicePolicy
             return false;
         }
         else if($user->role_id==4){
+            return true;
+        }
+        else if($user->role_id==5){
             return true;
         }
     }
@@ -99,6 +107,9 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==4){
+            return false;
+        }
+        else if($user->role_id==5){
             return true;
         }
     }
@@ -118,13 +129,16 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
             return false;
         }
         else if($user->role_id==4){
-            return true;
+            return false;
+        }
+        else if($user->role_id==5){
+            return false;
         }
     }
 
@@ -142,13 +156,16 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
-            return true;
+            return false;
         }
         else if($user->role_id==4){
-            return true;
+            return false;
+        }
+        else if($user->role_id==5){
+            return false;
         }
     }
 
@@ -166,13 +183,16 @@ class invoicePolicy
             return true;
         }
         else if($user->role_id==2){
-            return true;
+            return false;
         }
         else if($user->role_id==3){
-            return true;
+            return false;
         }
         else if($user->role_id==4){
-            return true;
+            return false;
+        }
+        else if($user->role_id==5){
+            return false;
         }
     }
 }

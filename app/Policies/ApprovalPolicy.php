@@ -15,7 +15,7 @@ class ApprovalPolicy
     public function viewAny(User $user)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5 ){
             return true;
         }
     }
@@ -35,7 +35,7 @@ class ApprovalPolicy
 
     public function update(User $user)
     {
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
     }

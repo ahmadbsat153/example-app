@@ -19,13 +19,17 @@ class SupplierPolicy
     public function viewAny(User $user)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
             return true;
         }
         else if($user->role_id==3){
+            return true;
+        }else if($user->role_id==4){
+            return true;
+        }else if($user->role_id==5){
             return true;
         }
     }
@@ -40,7 +44,7 @@ class SupplierPolicy
     public function view(User $user, Supplier $supplier)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -60,7 +64,7 @@ class SupplierPolicy
     public function create(User $user)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -81,7 +85,7 @@ class SupplierPolicy
     public function update(User $user, Supplier $supplier)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -102,7 +106,7 @@ class SupplierPolicy
     public function delete(User $user, Supplier $supplier)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -123,7 +127,7 @@ class SupplierPolicy
     public function restore(User $user, Supplier $supplier)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){
@@ -144,7 +148,7 @@ class SupplierPolicy
     public function forceDelete(User $user, Supplier $supplier)
     {
         //
-        if($user->role_id==1){
+        if($user->role_id==1 || $user->role_id==5){
             return true;
         }
         else if($user->role_id==2){

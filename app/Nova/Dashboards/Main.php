@@ -2,6 +2,7 @@
 
 namespace App\Nova\Dashboards;
 use App\Nova\Metrics\NewInvoices;
+use App\Nova\Metrics\InvoiceAmount;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Cards\MyHtmlCard;
 
@@ -17,7 +18,7 @@ class Main extends Dashboard
      */
     public function cards()
     {
-        return [new NewInvoices,new NewUsers
+        return [new NewInvoices,new NewUsers, new InvoiceAmount,
         // new MyHtmlCard
     ];
     }
