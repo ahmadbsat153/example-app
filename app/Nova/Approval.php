@@ -134,4 +134,11 @@ class Approval extends Resource
     {
         return [];
     }
+    public static function availableForNavigation(Request $request)
+    {
+        if($request->user()->role_id == 4 || $request->user()->role_id == 3) 
+        return false;
+        else 
+        return true;
+    }
 }

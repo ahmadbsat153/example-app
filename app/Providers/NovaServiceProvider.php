@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-
+use PhpJunior\NovaLogViewer\Tool;
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -70,8 +70,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            new \PhpJunior\NovaLogViewer\Tool(),
+            (new Tool)->canSee(function ($request) {
+                return $request->user()->role_id==1;
+            }),
         ];
+
     }
 
     /**

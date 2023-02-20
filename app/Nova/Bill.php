@@ -149,4 +149,11 @@ class Bill extends Resource
     {
         return $query;
     }
+    public static function availableForNavigation(Request $request)
+    {
+        if($request->user()->role_id == 4) 
+        return false;
+        else 
+        return true;
+    }
 }

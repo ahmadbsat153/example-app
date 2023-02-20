@@ -36,7 +36,7 @@ class Supplier extends Resource
      * @var array
      */
     public static $search = [
-        'id','supp_name','supplier_nb','services_id','supplier_land',
+        'id','supp_name','supplier_nb','service_id','supplier_land',
     ];
 
     /**
@@ -49,12 +49,14 @@ class Supplier extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Supplier Name','supp_name'),
+            Text::make('Supplier Name','supp_name')
+            ->rules('required', 'max:255'),
             MaskedField::make('ABN','supplier_abn')
             ->mask('## ### ### ###')
-            ->required(),
+            ->rules('required', 'max:255'),
             // Text::make('Phone Number','supplier_nb'),
-            Text::make('Email','supplier_email'),
+            Text::make('Email','supplier_email')
+            ->rules('required', 'max:255'),
             MaskedField::make('Mobile Number','supplier_nb')
             ->mask('#### ### ###'),
             MaskedField::make('Land Line','supplier_land')
@@ -67,10 +69,14 @@ class Supplier extends Resource
     protected function addressFields()
     {
         return [
-            Text::make('Street Number','street_nb'),
-            Text::make('City','city'),
-            Text::make('State','state'),
-            Text::make('Zip Code','zip_code'),
+            Text::make('Street Number','street_nb')
+            ->rules('required', 'max:255'),
+            Text::make('City','city')
+            ->rules('required', 'max:255'),
+            Text::make('State','state')
+            ->rules('required', 'max:255'),
+            Text::make('Zip Code','zip_code')
+            ->rules('required', 'max:255'),
         ];
     }
     /**

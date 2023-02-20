@@ -24,8 +24,7 @@
         "mziraki/nova-formatted-number-field": "^0.0.2",
         "php-junior/nova-logs": "^1.1",
         "rimu/formatted-number": "^0.2.0",
-        "sereny/nova-permissions": "^1.2",
-        "silvanite/novafieldcheckboxes": "^1.2"
+        "sereny/nova-permissions": "^1.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
